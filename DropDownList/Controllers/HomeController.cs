@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DropDownList.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,19 +13,15 @@ namespace DropDownList.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult DatabaseExample()
         {
-            ViewBag.Message = "Your application description page.";
-
+            DropDownListEntities db = new DropDownListEntities();
+            var list = db.fruits.ToList();
+            SelectList selectListItems = new SelectList(list ,"id","name");
+            ViewBag.baglist = selectListItems;
             return View();
+
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }
